@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+  font-family: var(--font-sans);
+  color-scheme: dark;
+}
+
+.app-shell:has(.payment-theme) {
+  --color-slate-950: #f1f6f1;
+  --color-slate-900: #ffffff;
+  --color-slate-800: #e1e9e2;
+  --color-slate-700: #cbd8cd;
+  --color-slate-600: #738176;
+  --color-slate-500: #657469;
+  --color-slate-400: #536458;
+  --color-slate-300: #3d5144;
+  --color-slate-200: #2c4033;
+  --color-slate-100: #203328;
+  --color-slate-50: #f8fbf8;
+  --color-emerald-950: #e5f2e8;
+  --color-emerald-800: #b4d1ba;
+  --color-emerald-700: #28734b;
+  --color-emerald-600: #26794e;
+  --color-emerald-500: #23764b;
+  --color-emerald-400: #258052;
+  --color-emerald-300: #176b44;
+  --color-emerald-200: #365f45;
+  --color-emerald-100: #d5ead9;
+  --color-amber-950: #fff3e9;
+  --color-amber-900: #f8dfcb;
+  --color-amber-800: #ebc8aa;
+  --color-amber-700: #dca77f;
+  --color-amber-500: #c86d43;
+  --color-amber-400: #b95d35;
+  --color-amber-300: #a94e2b;
+  --color-amber-200: #7a442e;
+  --color-amber-100: #fff0e7;
+}
+
+.payment-theme {
+  background:
+    radial-gradient(ellipse at 8% 8%, rgb(206 232 211 / 55%), transparent 34rem),
+    linear-gradient(145deg, #f7faf6 0%, #edf4ed 55%, #f8f4ee 100%);
+}
+
+.payment-theme .text-white,
+.app-shell:has(.payment-theme) header .text-white {
+  color: var(--color-slate-100);
+}
+
+.app-shell:has(.payment-theme) {
+  color-scheme: light;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
