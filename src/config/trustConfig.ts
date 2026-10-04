@@ -40,9 +40,10 @@ export const TRUST_CONFIG: TrustConfig = {
   upiId: "mtlrcsb@tmb",
   payeeName: "MTLRCSB",
   
-  contactEmail: "care@aashrayatrust.org",
-  contactPhone: "+91 98765 43210",
-  address: "Plot 42, Sevagram Welfare Complex, Institutional Area, Sector 5, New Delhi - 110001",
+  // TODO: Replace these with the trust's actual contact details
+  contactEmail: "care@aashrayatrust.org",       // Placeholder — update with real trust email
+  contactPhone: "+91 98765 43210",              // Placeholder — update with real trust phone
+  address: "Plot 42, Sevagram Welfare Complex, Institutional Area, Sector 5, New Delhi - 110001",  // Placeholder — update with real address
   
   isDemoPlaceholder: false,
 };

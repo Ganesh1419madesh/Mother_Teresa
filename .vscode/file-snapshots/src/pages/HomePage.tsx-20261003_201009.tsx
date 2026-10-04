@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDonation } from '../context/DonationContext';
 import { DONATION_PRESETS } from '../config/trustConfig';
 import { 
@@ -14,34 +14,10 @@ import {
 } from 'lucide-react';
 import heroImage from '../assets/images/hero_charity_community_1790573703674.jpg';
 import handsImage from '../assets/images/trust_community_hands_1790573720859.jpg';
-import pillar1Img from '../assets/images/a.jpeg';
-import pillar2Img from '../assets/images/b.jpg';
-import pillar3Img from '../assets/images/c.png';
-import { Footer } from '../components/Footer';
 
 export const HomePage: React.FC = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const { amount, setAmount, donorInfo, setDonorInfo, trustConfig, generateNewRef } = useDonation();
-
-  // Handle smooth scroll when landing on page with a hash (e.g. /#causes)
-  useEffect(() => {
-    if (location.hash) {
-      const targetId = location.hash.replace('#', '');
-      const el = document.getElementById(targetId);
-      if (el) {
-        setTimeout(() => {
-          const headerOffset = 70;
-          const elementPosition = el.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth',
-          });
-        }, 150);
-      }
-    }
-  }, [location.hash]);
 
   const [inputVal, setInputVal] = useState<string>(amount > 0 ? String(amount) : '10');
   const [errorMsg, setErrorMsg] = useState<string>('');
@@ -103,7 +79,7 @@ export const HomePage: React.FC = () => {
         - Short meaningful message: "Your small contribution can make a meaningful difference."
         - Supporting text: "Give what you can. Every contribution helps us support people and build a better community."
       */}
-      <section id="home" className="relative min-h-[92vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 overflow-hidden">
+      <section className="relative min-h-[92vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 overflow-hidden">
         {/* Background Image Container with Zero-Broken-Image fallback */}
         <div className="absolute inset-0 z-0">
           <img
@@ -149,7 +125,7 @@ export const HomePage: React.FC = () => {
                 <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider text-left mb-2.5">
                   Select Donation Amount (₹ INR)
                 </label>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
+                <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
                   {DONATION_PRESETS.map((preset) => {
                     const isSelected = !isCustom && Number(inputVal) === preset.amount;
                     return (
@@ -299,8 +275,6 @@ export const HomePage: React.FC = () => {
       {/* TRUST PILLARS OF CAUSE */}
       <section id="causes" className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-950 border-t border-slate-800/80">
         <div className="max-w-6xl mx-auto">
-
-          {/* Section Header */}
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-xs font-semibold text-emerald-400 uppercase tracking-wider font-mono">
               Where Your Donation Goes
@@ -313,94 +287,45 @@ export const HomePage: React.FC = () => {
             </p>
           </div>
 
-          {/* Pillar Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            {/* Pillar 1 – Child Nutrition */}
-            <div className="group relative rounded-2xl overflow-hidden border border-slate-800 hover:border-emerald-700/60 transition-all duration-300 shadow-lg hover:shadow-emerald-900/30 hover:shadow-xl flex flex-col">
-              {/* Photo */}
-              <div className="relative h-56 sm:h-52 lg:h-56 overflow-hidden flex-shrink-0">
-                <img
-                  src={pillar1Img}
-                  alt="Children receiving nutritious meals"
-                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                />
-                {/* Dark gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
-                {/* Icon badge */}
-                <div className="absolute top-4 left-4 w-10 h-10 rounded-xl bg-emerald-500/90 backdrop-blur-sm flex items-center justify-center shadow-lg ring-1 ring-emerald-400/40">
-                  <Heart className="w-5 h-5 text-white" />
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Pillar 1 */}
+            <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-6 hover:border-slate-700 transition-colors">
+              <div className="w-10 h-10 rounded-lg bg-emerald-950/80 border border-emerald-800/60 flex items-center justify-center text-emerald-400 mb-4">
+                <Heart className="w-5 h-5" />
               </div>
-              {/* Text content */}
-              <div className="bg-slate-900 px-5 py-5 flex flex-col flex-1 border-t border-slate-800">
-                <h4 className="text-sm font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors duration-200">
-                  Child Nutrition & Daily Meals
-                </h4>
-                <p className="text-xs text-slate-400 leading-relaxed flex-1">
-                  Operating community kitchens providing wholesome, nutritious daily meals to underprivileged children and families in need.
-                </p>
-                <div className="mt-4 flex items-center gap-2 text-xs font-semibold text-emerald-400">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  Active Programme
-                </div>
-              </div>
+              <h4 className="text-base font-semibold text-white mb-2">
+                Child Nutrition & Daily Meals
+              </h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Operating community kitchens providing wholesome, nutritious daily meals to underprivileged children and families in need.
+              </p>
             </div>
 
-            {/* Pillar 2 – Education Kits */}
-            <div className="group relative rounded-2xl overflow-hidden border border-slate-800 hover:border-emerald-700/60 transition-all duration-300 shadow-lg hover:shadow-emerald-900/30 hover:shadow-xl flex flex-col">
-              <div className="relative h-56 sm:h-52 lg:h-56 overflow-hidden flex-shrink-0">
-                <img
-                  src={pillar2Img}
-                  alt="Education and school supply distribution"
-                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
-                <div className="absolute top-4 left-4 w-10 h-10 rounded-xl bg-emerald-500/90 backdrop-blur-sm flex items-center justify-center shadow-lg ring-1 ring-emerald-400/40">
-                  <BookOpen className="w-5 h-5 text-white" />
-                </div>
+            {/* Pillar 2 */}
+            <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-6 hover:border-slate-700 transition-colors">
+              <div className="w-10 h-10 rounded-lg bg-emerald-950/80 border border-emerald-800/60 flex items-center justify-center text-emerald-400 mb-4">
+                <BookOpen className="w-5 h-5" />
               </div>
-              <div className="bg-slate-900 px-5 py-5 flex flex-col flex-1 border-t border-slate-800">
-                <h4 className="text-sm font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors duration-200">
-                  Education Kits & School Supplies
-                </h4>
-                <p className="text-xs text-slate-400 leading-relaxed flex-1">
-                  Empowering children with textbooks, backpacks, stationery, and learning tools to encourage continuous education and a brighter future.
-                </p>
-                <div className="mt-4 flex items-center gap-2 text-xs font-semibold text-emerald-400">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  Active Programme
-                </div>
-              </div>
+              <h4 className="text-base font-semibold text-white mb-2">
+                Education Kits & School Supplies
+              </h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Empowering children with textbooks, backpacks, stationery, and learning tools to encourage continuous education and a brighter future.
+              </p>
             </div>
 
-            {/* Pillar 3 – Elderly Care (spans full width on sm 2-col grid) */}
-            <div className="group relative rounded-2xl overflow-hidden border border-slate-800 hover:border-emerald-700/60 transition-all duration-300 shadow-lg hover:shadow-emerald-900/30 hover:shadow-xl flex flex-col sm:col-span-2 lg:col-span-1">
-              <div className="relative h-56 sm:h-52 lg:h-56 overflow-hidden flex-shrink-0">
-                <img
-                  src={pillar3Img}
-                  alt="Elderly care and emergency relief"
-                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
-                <div className="absolute top-4 left-4 w-10 h-10 rounded-xl bg-emerald-500/90 backdrop-blur-sm flex items-center justify-center shadow-lg ring-1 ring-emerald-400/40">
-                  <Users className="w-5 h-5 text-white" />
-                </div>
+            {/* Pillar 3 */}
+            <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-6 hover:border-slate-700 transition-colors">
+              <div className="w-10 h-10 rounded-lg bg-emerald-950/80 border border-emerald-800/60 flex items-center justify-center text-emerald-400 mb-4">
+                <Users className="w-5 h-5" />
               </div>
-              <div className="bg-slate-900 px-5 py-5 flex flex-col flex-1 border-t border-slate-800">
-                <h4 className="text-sm font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors duration-200">
-                  Elderly Care & Emergency Relief
-                </h4>
-                <p className="text-xs text-slate-400 leading-relaxed flex-1">
-                  Providing health checkups, medicine kits, warm clothing, and emergency aid for elderly citizens and vulnerable individuals.
-                </p>
-                <div className="mt-4 flex items-center gap-2 text-xs font-semibold text-emerald-400">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  Active Programme
-                </div>
-              </div>
+              <h4 className="text-base font-semibold text-white mb-2">
+                Elderly Care & Emergency Relief
+              </h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Providing health checkups, medicine kits, warm clothing, and emergency aid for elderly citizens and vulnerable individuals.
+              </p>
             </div>
-
           </div>
         </div>
       </section>
@@ -477,14 +402,7 @@ export const HomePage: React.FC = () => {
               </p>
             </div>
 
-            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4 sm:p-5">
-              <h4 className="text-sm font-semibold text-white mb-1.5">
-                Is my donation safe and secure?
-              </h4>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Absolutely. All UPI transactions are processed securely through your bank's infrastructure with end-to-end encryption. We never store your bank credentials or UPI PIN. Your donation goes directly to the trust's registered bank account.
-              </p>
-            </div>
+            
 
             <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4 sm:p-5">
               <h4 className="text-sm font-semibold text-white mb-1.5">
@@ -499,7 +417,21 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* FOOTER */}
-      <Footer />
+      <footer className="mt-auto py-10 px-4 sm:px-6 lg:px-8 border-t border-slate-800/80 bg-slate-950 text-slate-400 text-xs">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="text-center md:text-left">
+            <p className="text-sm font-serif font-bold text-white">{trustConfig.name}</p>
+            
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-5 text-xs text-slate-400">
+            <a href="#causes" className="hover:text-white transition-colors">Our Causes</a>
+            <a href="#impact" className="hover:text-white transition-colors">Impact</a>
+            <a href="#faq" className="hover:text-white transition-colors">FAQs</a>
+            <a href="#faq" className="hover:text-white transition-colors">About for</a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

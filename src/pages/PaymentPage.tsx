@@ -156,11 +156,11 @@ export const PaymentPage: React.FC = () => {
           </p>
 
           {/* Prominent Donation Amount Highlight */}
-          <div className="mt-4 inline-flex items-center gap-3 px-5 py-2.5 bg-emerald-950/60 border border-emerald-800/80 rounded-full shadow-inner">
+          <div className="mt-4 inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 px-4 sm:px-5 py-2.5 bg-emerald-950/60 border border-emerald-800/80 rounded-2xl sm:rounded-full shadow-inner">
             <span className="text-xs uppercase tracking-wider text-emerald-300 font-medium">
               Donation Amount:
             </span>
-            <span className="text-2xl font-bold font-mono text-white">
+            <span className="text-xl sm:text-2xl font-bold font-mono text-white">
               ₹{amount.toLocaleString('en-IN')}
             </span>
             <button
@@ -174,9 +174,9 @@ export const PaymentPage: React.FC = () => {
         </div>
 
         {/* MAIN PAYMENT GRID */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-start">
           {/* Left Column: QR Code & Mobile Launch */}
-          <div className="lg:col-span-7 bg-slate-900/80 border border-slate-800 rounded-2xl p-6 sm:p-8 flex flex-col items-center text-center shadow-xl">
+          <div className="md:col-span-7 bg-slate-900/80 border border-slate-800 rounded-2xl p-5 sm:p-6 lg:p-8 flex flex-col items-center text-center shadow-xl">
             {paymentConfigured ? (
               <>
                 {/* Amount-specific UPI QR code, generated without a logo overlay. */}
@@ -256,7 +256,7 @@ export const PaymentPage: React.FC = () => {
           </div>
 
           {/* Right Column: UPI Details, Payment Verification & Status */}
-          <div className="lg:col-span-5 space-y-5">
+          <div className="md:col-span-5 space-y-5">
             {/* Payee Details Card */}
             <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 space-y-3">
               <h2 className="text-xs font-semibold uppercase tracking-wider text-slate-400">

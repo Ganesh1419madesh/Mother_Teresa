@@ -73,38 +73,7 @@ export const DonationProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     if (saved) {
       try {
         const savedConfig = JSON.parse(saved) as Partial<TrustConfig>;
-        const mergedConfig = { ...TRUST_CONFIG, ...savedConfig };
-        const shouldRefreshPaymentDetails =
-          savedConfig.upiId === 'aashrayatrust@upi' ||
-          savedConfig.upiId === 'davidaraj99-4@okhdfcbank' ||
-          (savedConfig.upiId === TRUST_CONFIG.upiId && !TRUST_CONFIG.isDemoPlaceholder);
-        const shouldRenameTrust =
-          savedConfig.name === 'Aashraya Charitable & Welfare Trust' ||
-          savedConfig.payeeName === 'David Araj';
-        const shouldUpdateDisplayName = savedConfig.name === 'ANNAI TERESA';
-        const shouldUpdatePayeeName =
-          savedConfig.payeeName === 'ANNAI TERESA' || savedConfig.payeeName === 'ANGEL FOODS';
-
-        if (shouldRenameTrust) {
-          mergedConfig.name = TRUST_CONFIG.name;
-          mergedConfig.payeeName = TRUST_CONFIG.payeeName;
-        }
-        if (shouldUpdateDisplayName) {
-          mergedConfig.name = TRUST_CONFIG.name;
-        }
-        if (shouldUpdatePayeeName) {
-          mergedConfig.payeeName = TRUST_CONFIG.payeeName;
-        }
-        if (shouldRefreshPaymentDetails) {
-          mergedConfig.upiId = TRUST_CONFIG.upiId;
-          mergedConfig.payeeName = TRUST_CONFIG.payeeName;
-          mergedConfig.isDemoPlaceholder = TRUST_CONFIG.isDemoPlaceholder;
-          mergedConfig.name = TRUST_CONFIG.name;
-        }
-        if (shouldRenameTrust || shouldUpdateDisplayName || shouldUpdatePayeeName || shouldRefreshPaymentDetails) {
-          localStorage.setItem(STORAGE_KEY_CONFIG, JSON.stringify(mergedConfig));
-        }
-        return mergedConfig;
+        return { ...TRUST_CONFIG, ...savedConfig };
       } catch {
         // fallback
       }

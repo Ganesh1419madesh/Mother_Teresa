@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDonation } from '../context/DonationContext';
+import { TRUST_CONFIG } from '../config/trustConfig';
 import { Check, Copy, HelpCircle, RefreshCw, X } from 'lucide-react';
 
 interface TrustConfigModalProps {
@@ -40,12 +41,12 @@ export const TrustConfigModal: React.FC<TrustConfigModalProps> = ({ isOpen, onCl
 
   const handleReset = () => {
     resetTrustConfig();
-    setName("Mother Teresa's Leprosy Rehabilitation Centre & Shishu Bhawan");
-    setUpiId('davidaraj99-4@okhdfcbank');
-    setPayeeName("# Mother Teresa's Leprosy Rehabilitation Centre & Shishu Bhawan");
-    setContactEmail('care@aashrayatrust.org');
-    setContactPhone('+91 98765 43210');
-    setAddress('Plot 42, Sevagram Welfare Complex, Institutional Area, Sector 5, New Delhi - 110001');
+    setName(TRUST_CONFIG.name);
+    setUpiId(TRUST_CONFIG.upiId);
+    setPayeeName(TRUST_CONFIG.payeeName);
+    setContactEmail(TRUST_CONFIG.contactEmail);
+    setContactPhone(TRUST_CONFIG.contactPhone);
+    setAddress(TRUST_CONFIG.address);
   };
 
   const copyConfigSnippet = () => {

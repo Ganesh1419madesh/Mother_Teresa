@@ -412,16 +412,24 @@ export const AdminSectionPage: React.FC<AdminSectionPageProps> = ({ title, descr
             <h2 className="text-xl font-semibold text-white">Key insights</h2>
             <div className="mt-4 space-y-4 text-sm text-slate-300">
               <div className="rounded-lg border border-slate-800 bg-slate-900/60 p-3">
-                <p className="text-slate-400">Top month</p>
-                <p className="mt-1 text-lg font-semibold text-white">This month</p>
+                <p className="text-slate-400">Verified rate</p>
+                <p className="mt-1 text-lg font-semibold text-white">
+                  {donationHistory.length
+                    ? `${Math.round((verifiedDonations / donationHistory.length) * 100)}%`
+                    : 'No data'}
+                </p>
               </div>
               <div className="rounded-lg border border-slate-800 bg-slate-900/60 p-3">
-                <p className="text-slate-400">Growth</p>
-                <p className="mt-1 text-lg font-semibold text-white">+18.2%</p>
+                <p className="text-slate-400">Average gift</p>
+                <p className="mt-1 text-lg font-semibold text-white">
+                  {averageGift ? `₹${Math.round(averageGift).toLocaleString('en-IN')}` : 'No data'}
+                </p>
               </div>
               <div className="rounded-lg border border-slate-800 bg-slate-900/60 p-3">
-                <p className="text-slate-400">Most active segment</p>
-                <p className="mt-1 text-lg font-semibold text-white">Recurring donors</p>
+                <p className="text-slate-400">Total donors</p>
+                <p className="mt-1 text-lg font-semibold text-white">
+                  {donationHistory.length || 'No data'}
+                </p>
               </div>
             </div>
           </div>

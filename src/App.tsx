@@ -4,6 +4,7 @@ import { DonationProvider, useDonation } from './context/DonationContext';
 import { TrustConfigBanner } from './components/TrustConfigBanner';
 import { Header } from './components/Header';
 import { HomePage } from './pages/HomePage';
+import { AboutPage } from './pages/AboutPage';
 import { PaymentPage } from './pages/PaymentPage';
 import { AdminLoginPage } from './pages/AdminLoginPage';
 import { AdminDashboardPage } from './pages/AdminDashboardPage';
@@ -26,6 +27,7 @@ const AppContent: React.FC = () => {
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/admin/login" element={<AdminLoginPage />} />
           <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
