@@ -309,36 +309,32 @@ export const HomePage: React.FC = () => {
               Transforming Lives in Our Communities
             </h3>
             <p className="text-slate-400 text-sm mt-3 leading-relaxed">
-              Every single rupee contributed goes directly towards ground-level operations and compassionate community service.
+              Every single rupee contributed goes directly towards ground-level operations, medical healing, and compassionate community service.
             </p>
           </div>
 
           {/* Pillar Cards Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            {/* Pillar 1 – Child Nutrition */}
+            {/* Pillar 1 – Child Nutrition & Shishu Bhawan */}
             <div className="group relative rounded-2xl overflow-hidden border border-slate-800 hover:border-emerald-700/60 transition-all duration-300 shadow-lg hover:shadow-emerald-900/30 hover:shadow-xl flex flex-col">
-              {/* Photo */}
               <div className="relative h-56 sm:h-52 lg:h-56 overflow-hidden flex-shrink-0">
                 <img
-                  src={pillar1Img}
-                  alt="Children receiving nutritious meals"
+                  src="/gallery/14.jpeg"
+                  alt="Daily nutritious meal serving at care home"
                   className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                 />
-                {/* Dark gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
-                {/* Icon badge */}
                 <div className="absolute top-4 left-4 w-10 h-10 rounded-xl bg-emerald-500/90 backdrop-blur-sm flex items-center justify-center shadow-lg ring-1 ring-emerald-400/40">
                   <Heart className="w-5 h-5 text-white" />
                 </div>
               </div>
-              {/* Text content */}
               <div className="bg-slate-900 px-5 py-5 flex flex-col flex-1 border-t border-slate-800">
                 <h4 className="text-sm font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors duration-200">
-                  Child Nutrition & Daily Meals
+                  Child Nutrition &amp; Shishu Bhawan Care
                 </h4>
                 <p className="text-xs text-slate-400 leading-relaxed flex-1">
-                  Operating community kitchens providing wholesome, nutritious daily meals to underprivileged children and families in need.
+                  Operating community kitchens providing hygienic, wholesome daily hot meals and clean shelter for destitute children and families.
                 </p>
                 <div className="mt-4 flex items-center gap-2 text-xs font-semibold text-emerald-400">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -347,12 +343,39 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* Pillar 2 – Education Kits */}
+            {/* Pillar 2 – Leprosy Rehabilitation & Medical Aid */}
             <div className="group relative rounded-2xl overflow-hidden border border-slate-800 hover:border-emerald-700/60 transition-all duration-300 shadow-lg hover:shadow-emerald-900/30 hover:shadow-xl flex flex-col">
               <div className="relative h-56 sm:h-52 lg:h-56 overflow-hidden flex-shrink-0">
                 <img
-                  src={pillar2Img}
-                  alt="Education and school supply distribution"
+                  src="/gallery/1.jpg"
+                  alt="Leprosy rehabilitation and medical patient care"
+                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+                <div className="absolute top-4 left-4 w-10 h-10 rounded-xl bg-emerald-500/90 backdrop-blur-sm flex items-center justify-center shadow-lg ring-1 ring-emerald-400/40">
+                  <Users className="w-5 h-5 text-white" />
+                </div>
+              </div>
+              <div className="bg-slate-900 px-5 py-5 flex flex-col flex-1 border-t border-slate-800">
+                <h4 className="text-sm font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors duration-200">
+                  Leprosy Rehabilitation &amp; Medical Aid
+                </h4>
+                <p className="text-xs text-slate-400 leading-relaxed flex-1">
+                  Providing daily specialized ulcer dressing, customized MCR footwear, physiotherapy, and dignified healthcare for leprosy patients.
+                </p>
+                <div className="mt-4 flex items-center gap-2 text-xs font-semibold text-emerald-400">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  Active Programme
+                </div>
+              </div>
+            </div>
+
+            {/* Pillar 3 – Education & Vocational Training */}
+            <div className="group relative rounded-2xl overflow-hidden border border-slate-800 hover:border-emerald-700/60 transition-all duration-300 shadow-lg hover:shadow-emerald-900/30 hover:shadow-xl flex flex-col sm:col-span-2 lg:col-span-1">
+              <div className="relative h-56 sm:h-52 lg:h-56 overflow-hidden flex-shrink-0">
+                <img
+                  src="/gallery/11.jpg"
+                  alt="Education kits and vocational skill training"
                   className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
@@ -362,37 +385,10 @@ export const HomePage: React.FC = () => {
               </div>
               <div className="bg-slate-900 px-5 py-5 flex flex-col flex-1 border-t border-slate-800">
                 <h4 className="text-sm font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors duration-200">
-                  Education Kits & School Supplies
+                  Education Kits &amp; Vocational Training
                 </h4>
                 <p className="text-xs text-slate-400 leading-relaxed flex-1">
-                  Empowering children with textbooks, backpacks, stationery, and learning tools to encourage continuous education and a brighter future.
-                </p>
-                <div className="mt-4 flex items-center gap-2 text-xs font-semibold text-emerald-400">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  Active Programme
-                </div>
-              </div>
-            </div>
-
-            {/* Pillar 3 – Elderly Care (spans full width on sm 2-col grid) */}
-            <div className="group relative rounded-2xl overflow-hidden border border-slate-800 hover:border-emerald-700/60 transition-all duration-300 shadow-lg hover:shadow-emerald-900/30 hover:shadow-xl flex flex-col sm:col-span-2 lg:col-span-1">
-              <div className="relative h-56 sm:h-52 lg:h-56 overflow-hidden flex-shrink-0">
-                <img
-                  src={pillar3Img}
-                  alt="Elderly care and emergency relief"
-                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
-                <div className="absolute top-4 left-4 w-10 h-10 rounded-xl bg-emerald-500/90 backdrop-blur-sm flex items-center justify-center shadow-lg ring-1 ring-emerald-400/40">
-                  <Users className="w-5 h-5 text-white" />
-                </div>
-              </div>
-              <div className="bg-slate-900 px-5 py-5 flex flex-col flex-1 border-t border-slate-800">
-                <h4 className="text-sm font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors duration-200">
-                  Elderly Care & Emergency Relief
-                </h4>
-                <p className="text-xs text-slate-400 leading-relaxed flex-1">
-                  Providing health checkups, medicine kits, warm clothing, and emergency aid for elderly citizens and vulnerable individuals.
+                  Equipping children with textbooks, backpacks, and schooling, while providing vocational craft workshops for self-reliant livelihoods.
                 </p>
                 <div className="mt-4 flex items-center gap-2 text-xs font-semibold text-emerald-400">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -410,32 +406,32 @@ export const HomePage: React.FC = () => {
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <div className="space-y-4">
             <span className="text-xs font-semibold text-emerald-400 uppercase tracking-wider font-mono">
-              Direct Community Service
+              Transparency &amp; Direct Impact
             </span>
             <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white leading-tight">
-              Hands Joined for Real Change
+              Every Rupee Reaches Those in Need
             </h3>
             <p className="text-slate-300 text-sm leading-relaxed">
-              Donations to <strong className="text-white">{trustConfig.name}</strong> go directly to ground programs without administrative delays. We work side-by-side with local communities to provide immediate relief and long-term support.
+              Donations to <strong className="text-white">{trustConfig.name}</strong> go directly to ground programs without administrative delays or intermediary cuts. We work side-by-side with our beneficiaries to ensure immediate relief, healing, and lasting dignity.
             </p>
 
-            <div className="space-y-3 pt-2 text-xs text-slate-300">
+            <div className="space-y-3.5 pt-2 text-xs text-slate-300">
               <div className="flex items-start gap-2.5">
                 <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                 <span>
-                  <strong className="text-white">100% Direct Utilization:</strong> Contributions fund food, medical supplies, and education kits directly.
+                  <strong className="text-white">100% Direct Ground Utilization:</strong> Every contribution directly funds essential food grains, medical bandages, and student school supplies.
                 </span>
               </div>
               <div className="flex items-start gap-2.5">
                 <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                 <span>
-                  <strong className="text-white">Instant UPI Settlement:</strong> Real-time transfer to trust accounts without third-party deductions.
+                  <strong className="text-white">Govt. Registered &amp; 80G Tax Deductible:</strong> Statutory compliance with 12A, 80G tax exemptions, and NITI Aayog NGO Darpan registration.
                 </span>
               </div>
               <div className="flex items-start gap-2.5">
                 <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                 <span>
-                  <strong className="text-white">Voucher Slip:</strong> Instantly view your donation acknowledgment slip.
+                  <strong className="text-white">Zero-Fee UPI &amp; Instant Receipt:</strong> Direct real-time bank settlement with an instantly downloadable donation acknowledgment slip.
                 </span>
               </div>
             </div>
@@ -443,17 +439,17 @@ export const HomePage: React.FC = () => {
 
           <div className="relative rounded-2xl overflow-hidden border border-slate-800 shadow-xl group">
             <img
-              src={handsImage}
-              alt="Community hands united in support"
+              src="/gallery/2.jpg"
+              alt="Community volunteers serving nutritious meals"
               referrerPolicy="no-referrer"
               className="w-full h-72 sm:h-80 object-cover group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent flex flex-col justify-end p-6">
-              <span className="text-xs font-semibold text-amber-300 uppercase tracking-wider font-mono">
-                100% Direct Delivery
+              <span className="text-xs font-semibold text-emerald-400 uppercase tracking-wider font-mono">
+                100% On-Ground Service
               </span>
               <p className="text-sm font-serif text-white mt-1">
-                Direct community mobilization with minimal overhead costs.
+                Serving nutritious daily meals, medical care, and children's shelter with love and dignity.
               </p>
             </div>
           </div>
@@ -463,35 +459,58 @@ export const HomePage: React.FC = () => {
       {/* FAQ SECTION */}
       <section id="faq" className="py-14 px-4 sm:px-6 lg:px-8 bg-slate-950 border-t border-slate-800/80">
         <div className="max-w-4xl mx-auto">
-          <h3 className="text-xl sm:text-2xl font-serif font-bold text-white text-center mb-8">
-            Frequently Asked Questions
-          </h3>
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <span className="text-xs font-semibold text-emerald-400 uppercase tracking-wider font-mono">
+              Clear &amp; Transparent
+            </span>
+            <h3 className="text-xl sm:text-2xl font-serif font-bold text-white mt-1">
+              Frequently Asked Questions
+            </h3>
+          </div>
 
           <div className="space-y-4">
-            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4 sm:p-5">
+            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4 sm:p-5 hover:border-slate-700 transition-colors">
               <h4 className="text-sm font-semibold text-white mb-1.5">
-                How does UPI donation work?
+                Are donations eligible for Section 80G Tax Deductions?
               </h4>
               <p className="text-xs text-slate-400 leading-relaxed">
-                UPI (Unified Payments Interface) allows real-time fund transfers directly from your bank account through any authorized UPI app (Google Pay, PhonePe, Paytm, BHIM, CRED, Amazon Pay). It is zero-fee and settles directly to the trust's account.
+                Yes. Mother Teresa's Leprosy Rehabilitation Centre &amp; Shishu Bhawan is a registered charitable trust under Section 12A and Section 80G of the Income Tax Act. Indian donors can claim tax deductions on their contributions.
               </p>
             </div>
 
-            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4 sm:p-5">
+            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4 sm:p-5 hover:border-slate-700 transition-colors">
               <h4 className="text-sm font-semibold text-white mb-1.5">
-                Is my donation safe and secure?
+                How do I receive my official donation acknowledgment receipt?
               </h4>
               <p className="text-xs text-slate-400 leading-relaxed">
-                Absolutely. All UPI transactions are processed securely through your bank's infrastructure with end-to-end encryption. We never store your bank credentials or UPI PIN. Your donation goes directly to the trust's registered bank account.
+                Immediately after completing your UPI payment, you can generate and download your verified donation receipt voucher slip on this platform, containing your unique transaction reference number and trust registration details.
               </p>
             </div>
 
-            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4 sm:p-5">
+            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4 sm:p-5 hover:border-slate-700 transition-colors">
               <h4 className="text-sm font-semibold text-white mb-1.5">
-                How is the UPI ID configured?
+                Does 100% of my donation go directly to the trust?
               </h4>
               <p className="text-xs text-slate-400 leading-relaxed">
-                Currently, the platform uses a placeholder UPI ID which you can update in or via the top configuration banner.
+                Yes. All UPI transfers settle directly and instantly into the trust's verified bank account with zero platform fees and zero third-party commissions. Every rupee supports daily meals, patient medication, and child education.
+              </p>
+            </div>
+
+            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4 sm:p-5 hover:border-slate-700 transition-colors">
+              <h4 className="text-sm font-semibold text-white mb-1.5">
+                Which UPI payment applications are supported?
+              </h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                You can donate using any standard UPI app including Google Pay, PhonePe, Paytm, BHIM UPI, Amazon Pay, CRED, or your bank's mobile banking app.
+              </p>
+            </div>
+
+            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4 sm:p-5 hover:border-slate-700 transition-colors">
+              <h4 className="text-sm font-semibold text-white mb-1.5">
+                Can I visit the rehabilitation centre or sponsor a meal in person?
+              </h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Yes, visitors and well-wishers are warmly invited to visit our care campus, interact with our community, or sponsor special occasion meals. Please see our contact phone and address on the <a href="/about" className="text-emerald-400 hover:underline">About Us page</a>.
               </p>
             </div>
           </div>

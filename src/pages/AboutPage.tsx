@@ -18,7 +18,6 @@ import {
   ChevronRight,
   Sparkles
 } from 'lucide-react';
-import { Footer } from '../components/Footer';
 
 export const AboutPage: React.FC = () => {
   const { trustConfig } = useDonation();
@@ -141,7 +140,8 @@ export const AboutPage: React.FC = () => {
       {/* GALLERY SECTION */}
       <section id="gallery" className="py-14 px-4 sm:px-6 lg:px-8 bg-slate-950 border-b border-slate-800/80">
         <div className="max-w-6xl mx-auto space-y-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          {/* Gallery Header & Filter Pills */}
+          <div className="space-y-4">
             <div>
               <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-400 uppercase tracking-wider font-mono">
                 <ImageIcon className="w-4 h-4" />
@@ -156,15 +156,15 @@ export const AboutPage: React.FC = () => {
             </div>
 
             {/* Category Filter Pills */}
-            <div className="flex flex-wrap items-center gap-1.5 bg-slate-900/80 p-1.5 rounded-xl border border-slate-800">
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 pt-1 no-scrollbar flex-wrap">
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                  className={`px-4 py-2 rounded-full text-xs font-medium transition-all whitespace-nowrap border ${
                     selectedCategory === cat
-                      ? 'bg-emerald-400 text-slate-950 font-bold shadow-sm'
-                      : 'text-slate-300 hover:text-white hover:bg-slate-800'
+                      ? 'bg-emerald-400 text-slate-950 border-emerald-400 font-bold shadow-md shadow-emerald-500/10'
+                      : 'bg-slate-900 text-slate-300 border-slate-800 hover:border-slate-700 hover:text-white hover:bg-slate-800/80'
                   }`}
                 >
                   {cat}
@@ -428,8 +428,23 @@ export const AboutPage: React.FC = () => {
         </div>
       )}
 
-      {/* FOOTER */}
-      <Footer />
+      {/* Minimal Non-Redundant Footer for About Page */}
+      <footer className="py-8 px-4 sm:px-6 lg:px-8 border-t border-slate-800/80 bg-slate-950 text-slate-500 text-xs">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <Heart className="w-4 h-4 text-emerald-400 fill-emerald-400/20" />
+            <span className="text-slate-300 font-medium">{trustConfig.name}</span>
+          </div>
+          <p>© {new Date().getFullYear()} All rights reserved.</p>
+          <div className="flex items-center gap-4 text-slate-400">
+            <Link to="/" className="hover:text-emerald-400 transition-colors">Home</Link>
+            <span>•</span>
+            <Link to="/payment" className="hover:text-emerald-400 transition-colors">Donate</Link>
+            <span>•</span>
+            <Link to="/admin/login" className="hover:text-emerald-400 transition-colors">Admin Portal</Link>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

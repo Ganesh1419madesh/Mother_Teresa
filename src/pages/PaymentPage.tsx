@@ -176,35 +176,34 @@ export const PaymentPage: React.FC = () => {
         {/* MAIN PAYMENT GRID */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-start">
           {/* Left Column: QR Code & Mobile Launch */}
-          <div className="md:col-span-7 bg-slate-900/80 border border-slate-800 rounded-2xl p-5 sm:p-6 lg:p-8 flex flex-col items-center text-center shadow-xl">
+          <div className="md:col-span-7 bg-slate-900/80 border border-slate-800 rounded-2xl p-6 sm:p-7 flex flex-col items-center text-center shadow-xl">
             {paymentConfigured ? (
               <>
-                {/* Amount-specific UPI QR code, generated without a logo overlay. */}
-                <div className="relative p-4 bg-white rounded-2xl shadow-2xl border-4 border-emerald-400/20 max-w-[280px] sm:max-w-[320px] mx-auto group">
+                {/* Amount-specific UPI QR code */}
+                <div className="relative p-4 bg-white rounded-2xl shadow-2xl border-4 border-emerald-400/30 max-w-[280px] sm:max-w-[300px] mx-auto group">
                   {qrCodeDataUrl ? (
                     <img
                       src={qrCodeDataUrl}
                       alt={`UPI payment QR for ${trustConfig.payeeName}`}
-                      className="w-64 h-64 object-contain mx-auto"
+                      className="w-60 h-60 object-contain mx-auto"
                     />
                   ) : (
-                    <p role="status" className="w-64 h-64 flex items-center justify-center text-sm text-slate-600">
+                    <p role="status" className="w-60 h-60 flex items-center justify-center text-sm text-slate-600">
                       Generating payment QR...
                     </p>
                   )}
                 </div>
 
-                <p className="mt-4 text-sm font-medium text-slate-200">
-                  Scan with any UPI payment app
-                </p>
-                <p className="text-xs text-slate-400 mt-0.5">
-                  Confirm the recipient and enter your donation amount in the app.
-                </p>
-                <p className="mt-2 max-w-sm text-xs text-amber-300">
-                  Your UPI app may show the account holder name registered to this UPI ID. Confirm the recipient before paying.
-                </p>
+                <div className="mt-4 space-y-1">
+                  <p className="text-sm font-semibold text-white">
+                    Scan with any UPI Payment App
+                  </p>
+                  <p className="text-xs text-slate-400">
+                    Google Pay · PhonePe · Paytm · BHIM · Amazon Pay · CRED
+                  </p>
+                </div>
 
-                <div className="w-full mt-6 space-y-2.5">
+                <div className="w-full mt-6 space-y-2">
                   <button
                     onClick={handleOpenUpiApp}
                     className="w-full py-3.5 px-5 rounded-xl font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 active:scale-[0.99] transition-all flex items-center justify-center gap-2 text-sm shadow-lg shadow-emerald-500/20"
@@ -213,10 +212,10 @@ export const PaymentPage: React.FC = () => {
                     <span>Pay with UPI App (₹{amount.toLocaleString('en-IN')})</span>
                   </button>
 
-                  <p className="text-[11px] text-slate-400 text-center">
+                  <p className="text-[11px] text-slate-500 text-center">
                     {isMobileDevice
-                      ? 'Tapping will open an available UPI app on your device.'
-                      : 'On desktop? Scan the QR with your mobile UPI app.'}
+                      ? 'Opens your default UPI application automatically.'
+                      : 'On mobile? Tap the button above to pay directly.'}
                   </p>
                 </div>
               </>
@@ -224,7 +223,7 @@ export const PaymentPage: React.FC = () => {
               <div className="w-full rounded-xl border border-amber-700/60 bg-amber-950/40 p-5 text-left">
                 <h2 className="text-sm font-semibold text-amber-200">Payments are not configured</h2>
                 <p className="mt-2 text-xs leading-relaxed text-amber-100/80">
-                  The current UPI ID is a placeholder, so banking apps cannot resolve the account name. Enter an active, bank-linked UPI ID and its registered payee name to create a usable payment QR.
+                  Enter an active, bank-linked UPI ID and its registered payee name to create a usable payment QR.
                 </p>
                 <button
                   type="button"
@@ -236,102 +235,64 @@ export const PaymentPage: React.FC = () => {
                 </button>
               </div>
             )}
-
-            {/* Supported Apps Section */}
-            <div className="mt-6 pt-5 border-t border-slate-800 w-full">
-              <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block mb-3">
-                Supported Payment Applications
-              </span>
-              <div className="flex flex-wrap items-center justify-center gap-2">
-                {['PhonePe', 'Google Pay', 'Paytm', 'BHIM', 'Amazon Pay', 'Any UPI App'].map((app) => (
-                  <span
-                    key={app}
-                    className="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700/60"
-                  >
-                    {app}
-                  </span>
-                ))}
-              </div>
-            </div>
           </div>
 
-          {/* Right Column: UPI Details, Payment Verification & Status */}
+          {/* Right Column: Clean Unified Payee Details & Voucher Generator */}
           <div className="md:col-span-5 space-y-5">
-            {/* Payee Details Card */}
-            <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 space-y-3">
-              <h2 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-                Payment Destination Details
-              </h2>
+            {/* Payee Info & 1-Click Copy */}
+            <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 space-y-3.5">
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-emerald-400 font-mono">
+                Direct Payee Details
+              </span>
 
               <div className="space-y-2.5 text-xs">
                 <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-                  <span className="text-slate-400">Payee Name:</span>
+                  <span className="text-slate-400">Verified Payee:</span>
                   <span className="font-semibold text-white truncate max-w-[190px]">
                     {trustConfig.payeeName}
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-                  <span className="text-slate-400">Recipient:</span>
-                  <span className="font-semibold text-white">{trustConfig.payeeName}</span>
-                </div>
-
-                <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-                  <span className="text-slate-400">Currency / Mode:</span>
-                  <span className="text-slate-300 font-mono">INR (Indian Rupee) · UPI Direct</span>
-                </div>
-
                 <div className="flex items-center justify-between">
-                  <span className="text-slate-400">Recipient verification:</span>
-                  <span className="text-emerald-400 font-medium">Confirm in UPI app</span>
+                  <span className="text-slate-400">UPI ID:</span>
+                  <div className="flex items-center gap-1.5">
+                    <span className="font-mono font-bold text-emerald-300 text-xs">
+                      {trustConfig.upiId}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={handleCopyUpi}
+                      className="p-1 text-slate-400 hover:text-white rounded hover:bg-slate-800 transition-colors"
+                      title="Copy recipient UPI ID"
+                    >
+                      {copiedUpi ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* PAYMENT STATUS / VERIFICATION SECTION (Adhering to: Do NOT fake success) */}
+            {/* Instant Donation Voucher Slip Claim */}
             <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 space-y-4">
               <div className="flex items-center gap-2">
-                {paymentInitiated ? (
-                  <div className="flex items-center gap-2 text-amber-400">
-                    <Clock className="w-4 h-4 animate-spin text-amber-400" />
-                    <h2 className="text-sm font-semibold text-amber-300">
-                      Payment Initiated — Awaiting Confirmation
-                    </h2>
-                  </div>
-                ) : (
-                  <div className="flex items-center gap-2 text-slate-300">
-                    <QrCode className="w-4 h-4 text-emerald-400" />
-                    <h2 className="text-sm font-semibold text-white">
-                      Please Verify Your Payment
-                    </h2>
-                  </div>
-                )}
+                <FileCheck2 className="w-4 h-4 text-emerald-400" />
+                <h2 className="text-sm font-semibold text-white">
+                  Get Official Donation Receipt
+                </h2>
               </div>
 
-              <div className="p-3 bg-slate-950/80 rounded-xl border border-slate-800 text-xs text-slate-300 leading-relaxed">
-                <p>
-                  UPI payments process securely within your banking app. Once completed in PhonePe, GPay, Paytm, or BHIM, please provide your 12-digit <strong>UTR / UPI Reference Number</strong> below to claim your official donation voucher slip.
-                </p>
-              </div>
-
-              <button
-                type="button"
-                onClick={handleCopyUpi}
-                className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-white"
-                title="Copy recipient UPI ID"
-              >
-                {copiedUpi ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                {copiedUpi ? 'UPI ID copied' : 'Copy UPI ID'}
-              </button>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                After completing the payment in your UPI app, enter your 12-digit transaction UTR reference number to generate your official acknowledgment receipt voucher.
+              </p>
 
               {/* Form to enter UTR / Reference */}
               <form onSubmit={handleVerifyUtr} className="space-y-3">
                 <div>
                   <label
                     htmlFor="utr-input"
-                    className="block text-xs font-medium text-slate-300 mb-1"
+                    className="block text-[11px] font-medium text-slate-300 mb-1"
                   >
-                    12-digit UPI UTR / Reference Number:
+                    UPI Reference / UTR Number:
                   </label>
                   <input
                     id="utr-input"
@@ -343,23 +304,23 @@ export const PaymentPage: React.FC = () => {
                     }}
                     placeholder="e.g. 427819234812"
                     maxLength={16}
-                    className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-700 rounded-lg text-sm text-white font-mono placeholder-slate-600 focus:outline-none focus:border-emerald-500"
+                    className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-700 rounded-xl text-sm text-white font-mono placeholder-slate-600 focus:outline-none focus:border-emerald-500 transition-colors"
                   />
                   {utrError && (
-                    <p className="mt-1 text-xs text-red-400 flex items-center gap-1">
+                    <p className="mt-1.5 text-xs text-red-400 flex items-center gap-1">
                       <AlertTriangle className="w-3.5 h-3.5 shrink-0" />
                       <span>{utrError}</span>
                     </p>
                   )}
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-2 pt-1">
+                <div className="space-y-2 pt-1">
                   <button
                     type="submit"
-                    className="flex-1 py-2.5 px-4 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 text-xs font-semibold transition-colors flex items-center justify-center gap-1.5"
+                    className="w-full py-2.5 px-4 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-xs font-bold transition-all shadow-md shadow-emerald-500/10 flex items-center justify-center gap-1.5"
                   >
                     <FileCheck2 className="w-4 h-4" />
-                    <span>Generate Donation Voucher</span>
+                    <span>Generate Donation Receipt</span>
                   </button>
 
                   <button
@@ -368,19 +329,17 @@ export const PaymentPage: React.FC = () => {
                       saveCompletedDonation();
                       setReceiptModalOpen(true);
                     }}
-                    className="py-2.5 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium transition-colors"
+                    className="w-full py-2 text-center text-xs text-slate-400 hover:text-emerald-400 transition-colors"
                   >
-                    View Voucher
+                    Skip UTR &amp; View Acknowledgment Slip →
                   </button>
                 </div>
               </form>
 
               {/* Status Note */}
-              <div className="pt-2 border-t border-slate-800/80 text-[11px] text-slate-500 flex items-start gap-1.5">
-                <Heart className="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5" />
-                <span>
-                  Donation is registered under reference <strong className="text-slate-400 font-mono">{transactionRef}</strong>.
-                </span>
+              <div className="pt-3 border-t border-slate-800 text-[11px] text-slate-500 flex items-center justify-between">
+                <span>Ref: <strong className="text-slate-400 font-mono">{transactionRef}</strong></span>
+                <span className="text-emerald-400/90 font-medium">100% Tax Deductible</span>
               </div>
             </div>
           </div>
