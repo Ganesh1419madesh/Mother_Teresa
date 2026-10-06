@@ -507,10 +507,10 @@ export const HomePage: React.FC = () => {
 
             <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4 sm:p-5 hover:border-slate-700 transition-colors">
               <h4 className="text-sm font-semibold text-white mb-1.5">
-                Can I visit the rehabilitation centre or sponsor a meal in person?
+                Can I visit the rehabilitation centre or sponsor a meal?
               </h4>
               <p className="text-xs text-slate-400 leading-relaxed">
-                Yes, visitors and well-wishers are warmly invited to visit our care campus, interact with our community, or sponsor special occasion meals. Please see our contact phone and address on the <a href="/about" className="text-emerald-400 hover:underline">About Us page</a>.
+                To protect the health, medical safety, and privacy of our recovering residents and children, in-person visitor entry is currently restricted. However, you can sponsor special occasion meals, daily nutrition, or medical kits online, and our care team will coordinate the direct distribution on your behalf. For administrative inquiries, feel free to reach out via our <a href="/about" className="text-emerald-400 hover:underline">contact details</a>.
               </p>
             </div>
           </div>
