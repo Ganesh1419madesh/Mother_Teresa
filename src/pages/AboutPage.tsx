@@ -16,7 +16,11 @@ import {
   Image as ImageIcon,
   X,
   ChevronRight,
-  Sparkles
+  Sparkles,
+  FileText,
+  Download,
+  ExternalLink,
+  Eye
 } from 'lucide-react';
 
 export const AboutPage: React.FC = () => {
@@ -219,87 +223,90 @@ export const AboutPage: React.FC = () => {
               Official Trust Accreditations &amp; Registrations
             </h2>
             <p className="text-slate-400 text-xs sm:text-sm mt-2">
-              Our trust operates under strict regulatory compliance with full registration under the Indian Trusts Act, Income Tax Department (12A &amp; 80G), NITI Aayog NGO Darpan, and CSR-1.
+              Our trust operates under strict regulatory compliance with official statutory registrations under the Indian Trusts Act, Income Tax Department (12A &amp; 80G Tax Exemption), FCRA, and PAN.
             </p>
           </div>
 
           {/* Certificates Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {TRUST_CERTIFICATES.map((cert) => (
               <div
                 key={cert.id}
-                className="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-emerald-500/50 hover:shadow-xl hover:shadow-emerald-500/5 transition-all group"
+                className="bg-slate-900/90 border border-slate-800 rounded-2xl overflow-hidden flex flex-col justify-between hover:border-emerald-500/50 hover:shadow-xl hover:shadow-emerald-500/5 transition-all group"
               >
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="px-2.5 py-1 rounded-md bg-emerald-950/80 border border-emerald-800/60 text-[11px] font-bold text-emerald-400">
+                {/* Certificate Thumbnail Preview */}
+                <div
+                  onClick={() => setViewCertModal(cert)}
+                  className="relative aspect-[4/3] bg-slate-950 overflow-hidden cursor-pointer border-b border-slate-800/80 group-hover:opacity-95"
+                >
+                  <img
+                    src={cert.previewImage}
+                    alt={cert.name}
+                    loading="lazy"
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent flex items-end justify-between p-3.5">
+                    <span className="px-2.5 py-1 rounded-md bg-emerald-950/90 border border-emerald-800/80 text-[11px] font-bold text-emerald-300">
                       {cert.badge}
                     </span>
-                    <span className="text-[11px] font-mono text-slate-400">
-                      {cert.code}
+                    <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-900/90 text-slate-300 border border-slate-700">
+                      {cert.totalPages} {cert.totalPages === 1 ? 'Page' : 'Pages'}
                     </span>
                   </div>
+                  <div className="absolute top-3 right-3 w-8 h-8 rounded-lg bg-slate-900/80 backdrop-blur-sm border border-slate-700 flex items-center justify-center text-slate-300 group-hover:text-emerald-400 transition-colors">
+                    <Eye className="w-4 h-4" />
+                  </div>
+                </div>
 
-                  <div>
+                <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-mono font-semibold text-emerald-400">
+                        {cert.code}
+                      </span>
+                      <span className="text-[11px] text-emerald-400 font-medium flex items-center gap-1">
+                        <CheckCircle2 className="w-3.5 h-3.5" />
+                        {cert.validity}
+                      </span>
+                    </div>
+
                     <h3 className="text-base font-serif font-bold text-white group-hover:text-emerald-300 transition-colors">
                       {cert.name}
                     </h3>
-                    <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                    <p className="text-xs text-slate-400 leading-relaxed">
                       {cert.description}
                     </p>
                   </div>
 
-                  {/* Details Box */}
-                  <div className="bg-slate-950/80 p-3 rounded-xl border border-slate-800/80 space-y-2 text-xs">
-                    <div className="flex items-center justify-between">
-                      <span className="text-slate-500 text-[11px]">Reg / Cert No:</span>
-                      <div className="flex items-center gap-1.5">
-                        <span className="font-mono font-bold text-emerald-300 text-xs">
-                          {cert.registrationNumber}
-                        </span>
-                        <button
-                          onClick={() => handleCopy(cert.registrationNumber, cert.id)}
-                          className="text-slate-400 hover:text-white p-1 rounded transition-colors"
-                          title="Copy Certificate Number"
-                        >
-                          {copiedId === cert.id ? (
-                            <Check className="w-3.5 h-3.5 text-emerald-400" />
-                          ) : (
-                            <Copy className="w-3.5 h-3.5" />
-                          )}
-                        </button>
-                      </div>
-                    </div>
-
+                  <div className="space-y-2 pt-2 border-t border-slate-800/80 text-xs">
                     <div className="flex items-center justify-between text-[11px]">
-                      <span className="text-slate-500">Authority:</span>
+                      <span className="text-slate-500">Issuing Authority:</span>
                       <span className="text-slate-300 font-medium text-right truncate max-w-[170px]" title={cert.authority}>
                         {cert.authority}
                       </span>
                     </div>
 
-                    <div className="flex items-center justify-between text-[11px]">
-                      <span className="text-slate-500">Issue / Status:</span>
-                      <span className="text-emerald-400 font-medium flex items-center gap-1">
-                        <CheckCircle2 className="w-3 h-3" />
-                        {cert.validity}
-                      </span>
+                    {/* Action Buttons */}
+                    <div className="grid grid-cols-2 gap-2 pt-2">
+                      <button
+                        onClick={() => setViewCertModal(cert)}
+                        className="py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
+                      >
+                        <Eye className="w-3.5 h-3.5 text-emerald-400" />
+                        <span>Preview</span>
+                      </button>
+
+                      <a
+                        href={cert.pdfUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="py-2 px-3 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-300 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
+                      >
+                        <FileText className="w-3.5 h-3.5" />
+                        <span>Open PDF</span>
+                      </a>
                     </div>
                   </div>
-                </div>
-
-                <div className="pt-4 mt-4 border-t border-slate-800/80 flex items-center justify-between">
-                  <button
-                    onClick={() => setViewCertModal(cert)}
-                    className="text-xs text-emerald-400 hover:text-emerald-300 font-semibold inline-flex items-center gap-1 transition-colors"
-                  >
-                    <span>View Certificate Info</span>
-                    <ChevronRight className="w-3.5 h-3.5" />
-                  </button>
-
-                  <span className="text-[10px] text-slate-500">
-                    Verified
-                  </span>
                 </div>
               </div>
             ))}
@@ -373,56 +380,97 @@ export const AboutPage: React.FC = () => {
       {/* Certificate Detail Modal */}
       {viewCertModal && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/90 backdrop-blur-md overflow-y-auto"
           onClick={() => setViewCertModal(null)}
         >
           <div
-            className="relative max-w-lg w-full bg-slate-900 border border-slate-700 rounded-2xl p-6 shadow-2xl space-y-4"
+            className="relative max-w-3xl w-full bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden shadow-2xl flex flex-col my-6"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-              <div className="flex items-center gap-2">
-                <Award className="w-5 h-5 text-emerald-400" />
-                <span className="text-sm font-bold text-white">{viewCertModal.name}</span>
+            {/* Modal Header */}
+            <div className="flex items-center justify-between px-5 py-4 border-b border-slate-800 bg-slate-900/90">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-emerald-950 border border-emerald-800 flex items-center justify-center text-emerald-400">
+                  <Award className="w-4 h-4" />
+                </div>
+                <div>
+                  <h4 className="text-sm sm:text-base font-bold text-white">{viewCertModal.name}</h4>
+                  <p className="text-[11px] text-emerald-400 font-medium">{viewCertModal.badge}</p>
+                </div>
               </div>
               <button
                 onClick={() => setViewCertModal(null)}
-                className="p-1 text-slate-400 hover:text-white rounded-lg"
+                className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="space-y-3 text-xs text-slate-300">
-              <p className="text-slate-400 leading-relaxed">{viewCertModal.description}</p>
-              
-              <div className="bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-2">
+            {/* Modal Body */}
+            <div className="p-4 sm:p-6 space-y-4 max-h-[75vh] overflow-y-auto">
+              <p className="text-xs text-slate-300 leading-relaxed">
+                {viewCertModal.description}
+              </p>
+
+              {/* Certificate Image Preview */}
+              <div className="bg-slate-950 rounded-xl p-2 sm:p-4 border border-slate-800 flex items-center justify-center overflow-hidden">
+                <img
+                  src={viewCertModal.previewImage}
+                  alt={viewCertModal.name}
+                  className="max-h-[55vh] w-auto max-w-full object-contain rounded-lg shadow-lg border border-slate-800"
+                />
+              </div>
+
+              {/* Metadata details */}
+              <div className="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800 space-y-2 text-xs">
                 <div className="flex justify-between">
-                  <span className="text-slate-500">Registration Number:</span>
-                  <span className="font-mono font-bold text-emerald-400">{viewCertModal.registrationNumber}</span>
+                  <span className="text-slate-500">Document Code:</span>
+                  <span className="font-mono font-bold text-emerald-400">{viewCertModal.code}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-slate-500">Issuing Authority:</span>
                   <span className="text-slate-200 text-right">{viewCertModal.authority}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-500">Issued Date:</span>
-                  <span className="text-slate-200">{viewCertModal.issuedDate}</span>
+                  <span className="text-slate-500">Validity / Status:</span>
+                  <span className="text-emerald-400 font-semibold">{viewCertModal.validity}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-500">Validity:</span>
-                  <span className="text-emerald-400 font-semibold">{viewCertModal.validity}</span>
+                  <span className="text-slate-500">Total Document Pages:</span>
+                  <span className="text-slate-200">{viewCertModal.totalPages} {viewCertModal.totalPages === 1 ? 'Page' : 'Pages'}</span>
                 </div>
               </div>
             </div>
 
-            <div className="pt-3 border-t border-slate-800 flex justify-end">
+            {/* Modal Actions */}
+            <div className="p-4 border-t border-slate-800 bg-slate-900/90 flex flex-wrap items-center justify-between gap-3">
               <button
                 onClick={() => setViewCertModal(null)}
-                className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-xs font-semibold transition-colors"
+                className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-lg transition-colors"
               >
                 Close
               </button>
+
+              <div className="flex items-center gap-2">
+                <a
+                  href={viewCertModal.pdfUrl}
+                  download
+                  className="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-lg flex items-center gap-1.5 transition-colors"
+                >
+                  <Download className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>Download PDF</span>
+                </a>
+
+                <a
+                  href={viewCertModal.pdfUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-xs font-bold rounded-lg flex items-center gap-1.5 transition-colors shadow-sm"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>Open Full PDF in New Tab</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>

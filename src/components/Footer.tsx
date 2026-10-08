@@ -140,7 +140,7 @@ export const Footer: React.FC = () => {
             </p>
 
             <div className="space-y-2 pt-1">
-              {TRUST_CERTIFICATES.slice(0, 4).map((cert) => (
+              {TRUST_CERTIFICATES.map((cert) => (
                 <Link
                   key={cert.id}
                   to="/about#certificates"
@@ -158,8 +158,8 @@ export const Footer: React.FC = () => {
                     </span>
                   </div>
                   <div className="flex items-center justify-between mt-1 text-[11px] text-slate-400">
-                    <span className="font-mono text-slate-400 text-[10px]">
-                      ID: {cert.registrationNumber}
+                    <span className="text-slate-400 text-[10px] truncate max-w-[180px]">
+                      {cert.authority}
                     </span>
                     <span className="text-emerald-400/90 text-[10px] font-medium">
                       {cert.validity}
